@@ -92,5 +92,5 @@ variable "log_group_name" {
 variable "image_url_patient" {
   description = "Container Image URL"
   type        = string
-  default     = "677276078111.dkr.ecr.us-east-1.amazonaws.com/my-app-repo:latest"
+  default     = "010928202531.dkr.ecr.us-east-1.amazonaws.com/hackthon/usecase-1:latest"
 }
