@@ -30,8 +30,8 @@ jobs:
       run: |
         cd ./app/patient-svc/
         docker build -t patient-service:latest -f Dockerfile .
-        docker tag patient-service:latest ${{ secrets.AWS_ECR_PATIENT_URL }}:patient-service-latest
-        docker push ${{ secrets.AWS_ECR_PATIENT_URL }}:patient-service-latest
+        docker tag hackthon/usecase-1:latest 010928202531.dkr.ecr.us-east-1.amazonaws.com/hackthon/usecase-1:latest
+        docker push 010928202531.dkr.ecr.us-east-1.amazonaws.com/hackthon/usecase-1:latest
 
     - name: Build, Tag & Push Docker Image for Appointment Service
       run: |
