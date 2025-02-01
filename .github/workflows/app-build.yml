@@ -29,14 +29,16 @@ jobs:
     - name: Build, Tag & Push Docker Image for Patient Service
       run: |
         cd ./app/patient-svc/
-        docker build -t patient-service:latest -f Dockerfile .
+        # docker build -t patient-service:latest -f Dockerfile .
+        docker build -t hackthon/usecase-1 .
         docker tag hackthon/usecase-1:latest 010928202531.dkr.ecr.us-east-1.amazonaws.com/hackthon/usecase-1:latest
         docker push 010928202531.dkr.ecr.us-east-1.amazonaws.com/hackthon/usecase-1:latest
 
     - name: Build, Tag & Push Docker Image for Appointment Service
       run: |
        cd ./app/appointment-svc/
-       docker build -t appointment-service:latest -f Dockerfile .
+       # docker build -t appointment-service:latest -f Dockerfile .docker build -t hackthon/usecase-1 .
+       docker build -t hackthon/usecase-1 .
        docker tag appointment-service:latest 677276078111.dkr.ecr.us-east-1.amazonaws.com/my-app-repo:appointment-service-latest
        docker push 677276078111.dkr.ecr.us-east-1.amazonaws.com/my-app-repo:appointment-service-latest
 
