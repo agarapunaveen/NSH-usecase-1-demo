@@ -39,8 +39,11 @@ jobs:
        cd ./app/appointment-svc/
        # docker build -t appointment-service:latest -f Dockerfile .docker build -t hackthon/usecase-1 .
        docker build -t hackthon/usecase-1 .
-       docker tag appointment-service:latest 677276078111.dkr.ecr.us-east-1.amazonaws.com/my-app-repo:appointment-service-latest
-       docker push 677276078111.dkr.ecr.us-east-1.amazonaws.com/my-app-repo:appointment-service-latest
+       docker tag hackthon/usecase-1:latest 010928202531.dkr.ecr.us-east-1.amazonaws.com/hackthon/usecase-1:latest
+       # docker tag appointment-service:latest 677276078111.dkr.ecr.us-east-1.amazonaws.com/my-app-repo:appointment-service-latest
+       # docker push 677276078111.dkr.ecr.us-east-1.amazonaws.com/my-app-repo:appointment-service-latest
+       docker push 010928202531.dkr.ecr.us-east-1.amazonaws.com/hackthon/usecase-1:latest
+
 
 
     # # Build, tag, and push Docker image for Appointment Service
