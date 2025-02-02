@@ -109,12 +109,18 @@
     </mxGraphModel>
   </diagram>
   <diagram id="ouEwU5aGMf4nd-OeD3XI" name="Page-2">
-    <mxGraphModel dx="1034" dy="446" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1034" dy="1615" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="Er9saWvDmZ84uE_uZYMK-1" value="AWS Account" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=1;whiteSpace=wrap;fontSize=12;fontStyle=0;container=1;pointerEvents=0;collapsible=0;recursiveResize=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_account;strokeColor=#CD2264;fillColor=none;verticalAlign=top;align=left;spacingLeft=30;fontColor=#CD2264;dashed=0;" vertex="1" parent="1">
           <mxGeometry x="80" y="80" width="600" height="320" as="geometry" />
+        </mxCell>
+        <mxCell id="Er9saWvDmZ84uE_uZYMK-27" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="Er9saWvDmZ84uE_uZYMK-1">
+          <mxGeometry x="460" y="-30" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="eaSu-VhJybkSw0w6oC0I-1" value="ECR Repository" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="Er9saWvDmZ84uE_uZYMK-1">
+          <mxGeometry x="486.5" y="-15" width="60" height="30" as="geometry" />
         </mxCell>
         <mxCell id="Er9saWvDmZ84uE_uZYMK-2" value="VPC" style="sketch=0;outlineConnect=0;gradientColor=none;html=1;whiteSpace=wrap;fontSize=12;fontStyle=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_vpc;strokeColor=#B6BABF;fillColor=none;verticalAlign=top;align=left;spacingLeft=30;fontColor=#B6BABF;dashed=0;" vertex="1" parent="1">
           <mxGeometry x="120" y="120" width="520" height="240" as="geometry" />
@@ -169,6 +175,32 @@
         </mxCell>
         <mxCell id="Er9saWvDmZ84uE_uZYMK-25" value="LB" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="590" y="288" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Er9saWvDmZ84uE_uZYMK-26" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="530" y="-60" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Er9saWvDmZ84uE_uZYMK-28" value="Image" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="540" y="-45" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="eaSu-VhJybkSw0w6oC0I-2" value="" style="curved=1;endArrow=classic;html=1;rounded=0;entryX=0.722;entryY=-0.117;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="Er9saWvDmZ84uE_uZYMK-27">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="650" y="-15" as="sourcePoint" />
+            <mxPoint x="700" y="-65" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="700" y="-15" />
+              <mxPoint x="650" y="-65" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eaSu-VhJybkSw0w6oC0I-3" value="" style="curved=1;endArrow=classic;html=1;rounded=0;entryX=1;entryY=0.417;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="Er9saWvDmZ84uE_uZYMK-11">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="660" y="100" as="sourcePoint" />
+            <mxPoint x="710" y="50" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="710" y="100" />
+              <mxPoint x="660" y="50" />
+            </Array>
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
