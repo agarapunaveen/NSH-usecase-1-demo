@@ -12,10 +12,10 @@ appoinment_container_name = "appointment-container"
 image_url = "010928202531.dkr.ecr.us-east-1.amazonaws.com/hackthon/usecase-1:latest"
 # image_url = "677276078111.dkr.ecr.us-east-1.amazonaws.com/appointment-service:latest"
 
-task_memory = 512
-task_cpu = 256
+task_memory = 1024
+task_cpu = 512
 log_group_name = "ecs-application-logs"
-image_url_patient = "010928202531.dkr.ecr.us-east-1.amazonaws.com/hackthon/usecase-1:latest"
+image_url_patient = "010928202531.dkr.ecr.us-east-1.amazonaws.com/hackthon/usecase-1/patient:latest"
 # image_url_patient = "677276078111.dkr.ecr.us-east-1.amazonaws.com/patient-service:latest"
 patient_container_name = "patient-container"
 appointment_service_name = "appointment-service"
