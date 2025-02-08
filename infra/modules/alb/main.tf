@@ -153,3 +153,65 @@ resource "aws_lb_listener_rule" "patient_rule" {
     }
   }
 }
+
+# Application Load Balancer
+resource "aws_lb" "monitoring" {
+  name               = "monitoring-alb"
+  internal           = false
+  load_balancer_type = "application"
+  security_groups    = [aws_security_group.app_alb_sg.id]
+  subnets           = var.subnets
+}
+
+# ALB Listener for Prometheus
+resource "aws_lb_listener" "prometheus" {
+  load_balancer_arn = aws_lb.monitoring.arn
+  port              = "9090"
+  protocol          = "HTTP"
+
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.prometheus.arn
+  }
+}
+
+# ALB Listener for Grafana
+resource "aws_lb_listener" "grafana" {
+  load_balancer_arn = aws_lb.monitoring.arn
+  port              = "3000"
+  protocol          = "HTTP"
+
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.grafana.arn
+  }
+}
+
+# Target Groups
+resource "aws_lb_target_group" "prometheus" {
+  name        = "prometheus-tg"
+  port        = 9090
+  protocol    = "HTTP"
+  vpc_id      = var.vpc_id
+  target_type = "ip"
+
+  health_check {
+    path                = "/-/healthy"
+    healthy_threshold   = 2
+    unhealthy_threshold = 10
+  }
+}
+
+resource "aws_lb_target_group" "grafana" {
+  name        = "grafana-tg"
+  port        = 3000
+  protocol    = "HTTP"
+  vpc_id      = var.vpc_id
+  target_type = "ip"
+
+  health_check {
+    path                = "/api/health"
+    healthy_threshold   = 2
+    unhealthy_threshold = 10
+  }
+}
