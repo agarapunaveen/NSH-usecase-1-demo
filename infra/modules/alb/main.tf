@@ -29,6 +29,18 @@ resource "aws_security_group" "app_alb_sg" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]  # Allow HTTPS traffic from anywhere
   }
+ ingress {
+    from_port   = 2000
+    to_port     = 2000
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]  # Allow HTTPS traffic from anywhere
+  }
+ ingress {
+    from_port   = 9090
+    to_port     = 9090
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]  # Allow HTTPS traffic from anywhere
+  }
 
   ingress {
     from_port   = 3001
@@ -60,7 +72,7 @@ resource "aws_lb" "app_alb" {
 
 resource "aws_lb_target_group" "patient_tg" {
   name     = "patient-tg"
-  port     = 3000
+  port     = 2000
   protocol = "HTTP"
   vpc_id   = var.vpc_id
   target_type = "ip"
