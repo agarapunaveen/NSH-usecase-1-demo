@@ -84,8 +84,8 @@ resource "aws_ecs_task_definition" "patient_service" {
     essential  = true
     portMappings = [
       {
-        containerPort = 3000
-        hostPort      = 3000
+        containerPort = 2000
+        hostPort      = 2000
         protocol      = "tcp"
       }
     ]
@@ -151,7 +151,130 @@ resource "aws_ecs_service" "patient_service" {
   load_balancer {
     target_group_arn = var.patient_tg_arn
     container_name   = var.patient_container_name
-    container_port   = 3000
+    container_port   = 2000
   }
 }
 
+
+# Prometheus Task Definition
+resource "aws_ecs_task_definition" "prometheus" {
+  family                   = "prometheus"
+  requires_compatibilities = ["FARGATE"]
+  network_mode            = "awsvpc"
+  cpu                     = 1024
+  memory                  = 2048
+  execution_role_arn      = var.ecs_task_execution_role
+  task_role_arn           = var.ecs_promethes_execution_role
+
+  container_definitions = jsonencode([
+    {
+      name  = "prometheus"
+      image = "prom/prometheus:latest"
+      memory= 512
+      cpu= 216
+      essential=true
+      portMappings = [
+        {
+          containerPort = 9090
+          hostPort      = 9090
+          protocol      = "tcp"
+        }
+      ]
+      essential = true
+      logConfiguration = {
+        logDriver = "awslogs"
+        options = {
+          awslogs-group         = "/ecs/prometheus"
+          awslogs-region        = "us-east-1"
+          awslogs-stream-prefix = "prometheus"
+        }
+      }
+    }
+  ])
+
+}
+
+
+# ECS Service for Appointment Service
+resource "aws_ecs_service" "prometheus_service" {
+  name            = "prometheus"
+  cluster         = aws_ecs_cluster.main.id
+  task_definition = aws_ecs_task_definition.prometheus.arn
+  desired_count   = 1
+  launch_type     = "FARGATE"
+
+  network_configuration {
+    subnets          = var.public_subnets
+    security_groups  = var.security_groups
+    assign_public_ip = true
+  }
+
+  load_balancer {
+    target_group_arn = var.prometheus_tg_arn
+    container_name   = "prometheus"
+    container_port   = 9090
+  }
+}
+
+
+
+
+# Grafana Task Definition
+resource "aws_ecs_task_definition" "grafana" {
+  family                   = "grafana"
+  requires_compatibilities = ["FARGATE"]
+  network_mode            = "awsvpc"
+  cpu                     = 256
+  memory                  = 512
+  execution_role_arn      = var.ecs_task_execution_role
+  task_role_arn           = var.ecs_promethes_execution_role
+
+  container_definitions = jsonencode([
+    {
+      name  = "grafana"
+      image = "grafana/grafana:latest"
+      portMappings = [
+        {
+          containerPort = 3000
+          hostPort      = 3000
+          protocol      = "tcp"
+        }
+      ]
+      environment = [
+        {
+          name  = "GF_SECURITY_ADMIN_PASSWORD"
+          value = "admin"
+        }
+      ]
+      essential = true
+      logConfiguration = {
+        logDriver = "awslogs"
+        options = {
+          awslogs-group         = "/ecs/grafana"
+          awslogs-region        = "us-east-1"
+          awslogs-stream-prefix = "grafana"
+        }
+      }
+    }
+  ])
+}
+# ECS Service for Appointment Service
+resource "aws_ecs_service" "grafana_service" {
+  name            = "grafana"
+  cluster         = aws_ecs_cluster.main.id
+  task_definition = aws_ecs_task_definition.grafana.arn
+  desired_count   = 1
+  launch_type     = "FARGATE"
+
+  network_configuration {
+    subnets          = var.public_subnets
+    security_groups  = var.security_groups
+    assign_public_ip = true
+  }
+
+  load_balancer {
+    target_group_arn = var.grafana_tg_arn
+    container_name   = "grafana"
+    container_port   = 3000
+  }
+}
