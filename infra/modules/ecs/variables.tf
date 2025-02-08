@@ -90,3 +90,18 @@ variable "patient_tg_arn" {
   description = "Target Group ARN for Patient Service"
   type        = string
 }
+variable "ecs_task_execution_role" {
+  
+}
+variable "ecs_promethes_execution_role" {
+  
+}
+variable "prometheus_tg_arn" {
+  
+}
+variable "public_subnets" {
+  
+}
+variable "grafana_tg_arn" {
+  
+}
