@@ -34,6 +34,11 @@ module "ecs" {
   patient_container_name = var.patient_container_name
   appointment_tg_arn  = module.alb.appointment_tg_arn
   patient_tg_arn      = module.alb.patient_tg_arn
+  ecs_promethes_execution_role = module.iam.prometheus_role_arn
+  ecs_task_execution_role = module.iam.ecs_task_execution_role_arn
+  prometheus_tg_arn = module.alb.prometheus_tg_arn
+  public_subnets = module.vpc.public_subnets
+  grafana_tg_arn = module.alb.grafan_tg_arn
 }
 
 module "alb" {
