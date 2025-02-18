@@ -76,11 +76,14 @@ logConfiguration = {
 
 resource "aws_ecs_task_definition" "patient_service" {
   family                   = var.task_name
+  requires_compatibilities = ["FARGATE"]
+  network_mode             = "awsvpc"
+  execution_role_arn       = var.execution_role
   container_definitions    = jsonencode([{
     name       = var.patient_container_name
     image      = var.image_url_patient
-    memory     = var.task_memory
-    cpu        = var.task_cpu  # Make sure this is an integer
+    memory     = 512
+    cpu        = 216  # Make sure this is an integer
     essential  = true
     portMappings = [
       {
@@ -97,15 +100,38 @@ resource "aws_ecs_task_definition" "patient_service" {
           awslogs-stream-prefix = "patient-service"
         }
       }
-  }])
+  },
+{
+    name  = "xray-daemon"
+      image = "amazon/aws-xray-daemon"
+      essential = true
+      cpu    = 50
+      memory = 128
+       environment = [
+  {
+    name  = "AWS_XRAY_TRACING_NAME"
+    value = "patient-service-trace"
+  },
+  {
+    name  = "AWS_XRAY_DAEMON_ADDRESS"
+    value = "xray.us-east-1.amazonaws.com:2000"
+  },
+  {
+    name  = "AWS_XRAY_DAEMON_DISABLE_METADATA"
+    value = "true"
+  }
+]
+logConfiguration = {
+        logDriver = "awslogs"
+        options = {
+          awslogs-group         = aws_cloudwatch_log_group.ecs_logs.name
+          awslogs-region        = "us-east-1"
+          awslogs-stream-prefix = "xray"
+        }
+      }
+  }
 
-  requires_compatibilities = ["FARGATE"]
-  network_mode             = "awsvpc"
-  execution_role_arn       = var.execution_role
-
-  # Task-level CPU and Memory
-  cpu                      = var.task_cpu
-  memory                   = var.task_memory
+])
 
   tags = {
     Name = var.task_name
