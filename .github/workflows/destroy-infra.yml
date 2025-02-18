@@ -1,5 +1,4 @@
 name: Destroy AWS Infrastructure with Terraform IAC.
-
 on:
   workflow_dispatch: 
    inputs:
