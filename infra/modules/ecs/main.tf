@@ -79,6 +79,8 @@ resource "aws_ecs_task_definition" "patient_service" {
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"
   execution_role_arn       = var.execution_role
+  memory     = var.task_memory
+  cpu        = var.task_cpu  # Make sure this is an integer
   container_definitions    = jsonencode([{
     name       = var.patient_container_name
     image      = var.image_url_patient
