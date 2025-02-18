@@ -17,4 +17,4 @@ COPY . .
 EXPOSE 2000
 
 # Start the application
-CMD ["npm", "start"]r
+CMD ["npm", "start"]
