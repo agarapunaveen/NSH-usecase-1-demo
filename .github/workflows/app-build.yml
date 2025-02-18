@@ -31,8 +31,6 @@ jobs:
        # docker build -t appointment-service:latest -f Dockerfile .docker build -t hackthon/usecase-1 .
        docker build -t hackthon/usecase-1 .
        docker tag hackthon/usecase-1:latest 010928202531.dkr.ecr.us-east-1.amazonaws.com/hackthon/usecase-1:latest
-       # docker tag appointment-service:latest 677276078111.dkr.ecr.us-east-1.amazonaws.com/my-app-repo:appointment-service-latest
-       # docker push 677276078111.dkr.ecr.us-east-1.amazonaws.com/my-app-repo:appointment-service-latest
        docker push 010928202531.dkr.ecr.us-east-1.amazonaws.com/hackthon/usecase-1:latest
 
 
@@ -40,8 +38,7 @@ jobs:
     # # Build, tag, and push Docker image for Appointment Service
     - name: Build, Tag & Push Docker Image for Patient Service
       run: |
-         cd ./app/appointment-svc/
+         cd ./app/patient-svc/
          docker build -t hackthon/usecase-1/patient .
-         # docker build -t appointment-service:latest -f Dockerfile .
          docker tag hackthon/usecase-1/patient:latest ${{ secrets.AWS_ECR_PATIENT_URL }}:latest
          docker push ${{ secrets.AWS_ECR_PATIENT_URL }}:latest
