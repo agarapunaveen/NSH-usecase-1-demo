@@ -25,15 +25,6 @@ jobs:
          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
-    # Build, tag, and push Docker image for Patient Service
-    - name: Build, Tag & Push Docker Image for Patient Service
-      run: |
-        cd ./app/patient-svc/
-        # docker build -t patient-service:latest -f Dockerfile .
-        docker build -t hackthon/usecase-1 .
-        docker tag hackthon/usecase-1:latest 010928202531.dkr.ecr.us-east-1.amazonaws.com/hackthon/usecase-1:latest
-        docker push 010928202531.dkr.ecr.us-east-1.amazonaws.com/hackthon/usecase-1:latest
-
     - name: Build, Tag & Push Docker Image for Appointment Service
       run: |
        cd ./app/appointment-svc/
@@ -47,7 +38,7 @@ jobs:
 
 
     # # Build, tag, and push Docker image for Appointment Service
-    - name: Build, Tag & Push Docker Image for Appointment Service
+    - name: Build, Tag & Push Docker Image for Patient Service
       run: |
          cd ./app/appointment-svc/
          docker build -t hackthon/usecase-1/patient .
