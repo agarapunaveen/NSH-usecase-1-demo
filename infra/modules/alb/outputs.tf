@@ -15,10 +15,10 @@ output "patient_tg_arn" {
   value = aws_lb_target_group.patient_tg.arn
 }
 
-/*output "prometheus_tg_arn" {
+output "prometheus_tg_arn" {
   value = aws_lb_target_group.prometheus.arn
-}*/
+}
 
-/*output "grafan_tg_arn" {
+output "grafan_tg_arn" {
   value = aws_lb_target_group.grafana.arn
-}*/
+}
