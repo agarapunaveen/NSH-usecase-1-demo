@@ -23,7 +23,7 @@ module "ecs" {
   image_url_patient = var.image_url_patient
   task_memory     = var.task_memory
   task_cpu        = var.task_cpu
-  execution_role  = module.iam.ecs_task_role_arn
+  /*execution_role  = module.iam.ecs_task_role_arn */
   patient_service_name    = var.patient_service_name
   appointment_service_name = var.appointment_service_name
   cluster_id      = module.ecs.cluster_id
@@ -34,11 +34,11 @@ module "ecs" {
   patient_container_name = var.patient_container_name
   appointment_tg_arn  = module.alb.appointment_tg_arn
   patient_tg_arn      = module.alb.patient_tg_arn
-  ecs_promethes_execution_role = module.iam.prometheus_role_arn
-  ecs_task_execution_role = module.iam.ecs_task_execution_role_arn
-  prometheus_tg_arn = module.alb.prometheus_tg_arn
+ /* ecs_promethes_execution_role = module.iam.prometheus_role_arn*/
+  /*ecs_task_execution_role = module.iam.ecs_task_execution_role_arn*/
+ /* prometheus_tg_arn = module.alb.prometheus_tg_arn */
   public_subnets = module.vpc.public_subnets
-  grafana_tg_arn = module.alb.grafan_tg_arn
+  /*grafana_tg_arn = module.alb.grafan_tg_arn */
 }
 
 module "alb" {
