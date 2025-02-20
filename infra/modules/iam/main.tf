@@ -63,7 +63,7 @@ resource "aws_iam_policy" "ecs_logging_xray_policy" {
   })
 }
 
-/*resource "aws_iam_role" "ecs_execution_role" {
+resource "aws_iam_role" "ecs_execution_role" {
   name = "ecs-execution-role"
 
   assume_role_policy = jsonencode({
@@ -79,7 +79,7 @@ resource "aws_iam_policy" "ecs_logging_xray_policy" {
       }
     ]
   })
-} */
+} 
 
 resource "aws_iam_role_policy_attachment" "ecs_execution_attach_logging" {
   role       = aws_iam_role.ecs_task_role.name
@@ -93,7 +93,7 @@ resource "aws_iam_role_policy_attachment" "ecs_execution_attach_xray" {
 
 
 # Prometheus Task Role
-/*resource "aws_iam_role" "prometheus_task_role" {
+resource "aws_iam_role" "prometheus_task_role" {
   name = "prometheus-task-role"
 
   assume_role_policy = jsonencode({
@@ -108,10 +108,10 @@ resource "aws_iam_role_policy_attachment" "ecs_execution_attach_xray" {
       }
     ]
   })
-}*/
+}
 
 # Policy to allow Prometheus to discover ECS targets
-/*resource "aws_iam_role_policy" "prometheus_ecs_discovery" {
+resource "aws_iam_role_policy" "prometheus_ecs_discovery" {
   name = "prometheus-ecs-discovery"
   role = aws_iam_role.prometheus_task_role.id
 
@@ -130,4 +130,4 @@ resource "aws_iam_role_policy_attachment" "ecs_execution_attach_xray" {
       }
     ]
   })
-}*/
+}
