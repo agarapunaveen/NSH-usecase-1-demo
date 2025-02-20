@@ -185,7 +185,7 @@ resource "aws_ecs_service" "patient_service" {
 
 
 # Prometheus Task Definition
-/*resource "aws_ecs_task_definition" "prometheus" {
+resource "aws_ecs_task_definition" "prometheus" {
   family                   = "prometheus"
   requires_compatibilities = ["FARGATE"]
   network_mode            = "awsvpc"
@@ -220,11 +220,11 @@ resource "aws_ecs_service" "patient_service" {
     }
   ])
 
-} */
+} 
 
 
 # ECS Service for Appointment Service
-/*resource "aws_ecs_service" "prometheus_service" {
+resource "aws_ecs_service" "prometheus_service" {
   name            = "prometheus"
   cluster         = aws_ecs_cluster.main.id
   task_definition = aws_ecs_task_definition.prometheus.arn
@@ -242,13 +242,13 @@ resource "aws_ecs_service" "patient_service" {
     container_name   = "prometheus"
     container_port   = 9090
   }
-} */
+} 
 
 
 
 
 # Grafana Task Definition
-/*resource "aws_ecs_task_definition" "grafana" {
+resource "aws_ecs_task_definition" "grafana" {
   family                   = "grafana"
   requires_compatibilities = ["FARGATE"]
   network_mode            = "awsvpc"
@@ -285,9 +285,9 @@ resource "aws_ecs_service" "patient_service" {
       }
     }
   ])
-} */
+} 
 # ECS Service for Appointment Service
-/*resource "aws_ecs_service" "grafana_service" {
+resource "aws_ecs_service" "grafana_service" {
   name            = "grafana"
   cluster         = aws_ecs_cluster.main.id
   task_definition = aws_ecs_task_definition.grafana.arn
@@ -305,4 +305,4 @@ resource "aws_ecs_service" "patient_service" {
     container_name   = "grafana"
     container_port   = 3000
   }
-} */
+} 
