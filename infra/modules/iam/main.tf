@@ -82,12 +82,12 @@ resource "aws_iam_policy" "ecs_logging_xray_policy" {
 } */
 
 resource "aws_iam_role_policy_attachment" "ecs_execution_attach_logging" {
-  role       = aws_iam_role.ecs_execution_role.name
+  role       = aws_iam_role.ecs_task_role.name
   policy_arn = "arn:aws:iam::aws:policy/CloudWatchLogsFullAccess"
 }
 
 resource "aws_iam_role_policy_attachment" "ecs_execution_attach_xray" {
-  role       = aws_iam_role.ecs_execution_role.name
+  role       = aws_iam_role.ecs_task_role.name
   policy_arn = "arn:aws:iam::aws:policy/AWSXRayDaemonWriteAccess"
 }
 
