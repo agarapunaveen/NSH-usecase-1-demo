@@ -29,7 +29,15 @@ resource "aws_security_group" "app_alb_sg" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]  # Allow HTTPS traffic from anywhere
   }
- ingress {
+ 
+
+  ingress {
+    from_port   = 3001
+    to_port     = 3001
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]  # Allow HTTPS traffic from anywhere
+  }
+/*ingress {
     from_port   = 2000
     to_port     = 2000
     protocol    = "tcp"
@@ -40,14 +48,7 @@ resource "aws_security_group" "app_alb_sg" {
     to_port     = 9090
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]  # Allow HTTPS traffic from anywhere
-  }
-
-  ingress {
-    from_port   = 3001
-    to_port     = 3001
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]  # Allow HTTPS traffic from anywhere
-  }
+  }*/
 
   tags = {
     Name = "app-alb-sg"
