@@ -23,13 +23,13 @@ resource "aws_security_group" "app_alb_sg" {
     cidr_blocks = ["0.0.0.0/0"]  # Allow HTTPS traffic from anywhere
   }
   
-  ingress {
-    from_port   = 3000
-    to_port     = 3000
+  
+ ingress {
+    from_port   = 2000
+    to_port     = 2000
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]  # Allow HTTPS traffic from anywhere
   }
- 
 
   ingress {
     from_port   = 3001
@@ -38,8 +38,8 @@ resource "aws_security_group" "app_alb_sg" {
     cidr_blocks = ["0.0.0.0/0"]  # Allow HTTPS traffic from anywhere
   }
 /*ingress {
-    from_port   = 2000
-    to_port     = 2000
+    from_port   = 3000
+    to_port     = 3000
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]  # Allow HTTPS traffic from anywhere
   }
