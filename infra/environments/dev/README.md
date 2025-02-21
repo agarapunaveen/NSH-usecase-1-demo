@@ -36,7 +36,7 @@ No resources.
 | <a name="input_availability_zones"></a> [availability\_zones](#input\_availability\_zones) | AWS availability zones | `list(string)` | <pre>[<br/>  "us-west-2a",<br/>  "us-west-2b"<br/>]</pre> | no |
 | <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | ECS Cluster Name | `string` | `"my-ecs-cluster"` | no |
 | <a name="input_image_url"></a> [image\_url](#input\_image\_url) | Container Image URL | `string` | `"677276078111.dkr.ecr.us-east-1.amazonaws.com/my-app-repo:latest"` | no |
-| <a name="input_image_url_patient"></a> [image\_url\_patient](#input\_image\_url\_patient) | Container Image URL | `string` | `"677276078111.dkr.ecr.us-east-1.amazonaws.com/my-app-repo:latest"` | no |
+| <a name="input_image_url_patient"></a> [image\_url\_patient](#input\_image\_url\_patient) | Container Image URL | `string` | `"010928202531.dkr.ecr.us-east-1.amazonaws.com/hackthon/usecase-1:latest"` | no |
 | <a name="input_log_group_name"></a> [log\_group\_name](#input\_log\_group\_name) | CloudWatch Log Group Name | `string` | `"ecs-application-logs"` | no |
 | <a name="input_patient_container_name"></a> [patient\_container\_name](#input\_patient\_container\_name) | The name of the container | `string` | `"patient-container"` | no |
 | <a name="input_patient_service_name"></a> [patient\_service\_name](#input\_patient\_service\_name) | The name of the ECS service | `string` | `"patient-service"` | no |
